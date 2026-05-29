@@ -1,0 +1,360 @@
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/dm-sans@5/index.min.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/dm-serif-display@5/index.min.css');
+
+:root {
+  --bg: #F7F5F0;
+  --surface: #FFFFFF;
+  --surface-2: #F2F0EB;
+  --border: #E2DFDA;
+  --border-mid: #CFCCC4;
+  --teal: #0C8C82;
+  --teal-glow: rgba(12,140,130,0.1);
+  --navy: #1A2744;
+  --text: #1C1A18;
+  --text-2: #6B6763;
+  --text-3: #9E9B96;
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.09), 0 4px 16px rgba(0,0,0,0.05);
+  --r: 14px;
+  --r-sm: 8px;
+  --r-lg: 22px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+}
+
+.logo-text {
+  line-height: 1.1;
+}
+
+.logo-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+}
+
+.logo-tag {
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.header-badge {
+  font-size: 12px;
+  color: var(--text-3);
+  background: var(--surface);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+}
+
+/* Card */
+
+.card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+/* Steps */
+
+.steps {
+  display: flex;
+  align-items: center;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.step-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--border-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  background: var(--surface);
+}
+
+.step-dot.active {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: #fff;
+}
+
+.step-lbl {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.step-lbl.active {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.step-line {
+  height: 1px;
+  flex: 1;
+  background: var(--border);
+}
+
+/* Form body */
+
+.fbody {
+  padding: 28px 26px 24px;
+}
+
+.ftitle {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.fsub {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 22px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.flbl {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-2);
+}
+
+.finput {
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--border);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  background: var(--surface);
+}
+
+.finput:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-glow);
+}
+
+.amt-wrap {
+  position: relative;
+}
+
+.amt-pre {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-2);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.finput.amt {
+  padding-left: 26px;
+}
+
+/* Buttons */
+
+.btn {
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-submit {
+  background: var(--teal);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(12,140,130,0.4);
+}
+
+.btn-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #0A7A71;
+}
+
+/* Processing */
+
+.proc-view {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  border-top-color: var(--teal);
+  margin: 0 auto 20px;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.proc-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.proc-sub {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 22px;
+}
+
+.proc-steps {
+  text-align: left;
+  max-width: 380px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.proc-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.proc-step.done {
+  color: var(--text);
+}
+
+.proc-step.cur {
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.pcheck {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+/* Decision + trace (basic) */
+
+.result-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+
+@media (max-width: 600px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+  .fbody {
+    padding: 24px 18px 20px;
+  }
+}

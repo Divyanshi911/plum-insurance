@@ -1,0 +1,1568 @@
+{
+  "source_test_file": "C:\\Users\\divya\\Projects\\plum-insurance\\backend\\tests\\test_cases.json",
+  "total_cases": 12,
+  "cases": [
+    {
+      "case_id": "TC001",
+      "case_name": "Wrong Document Uploaded",
+      "raw_claim": {
+        "member_id": "EMP001",
+        "claim_category": "CONSULTATION",
+        "treatment_date": "2024-11-01",
+        "claimed_amount": 1500
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "dr_sharma_prescription.jpg",
+            "doc_type": "PRESCRIPTION",
+            "fields": {},
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "another_prescription.jpg",
+            "doc_type": "PRESCRIPTION",
+            "fields": {},
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "APPROVED",
+        "approved_amount": 1350.0,
+        "claimed_amount": 1500,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Rajesh Kumar (EMP001) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹1500."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹1500 → copay=₹150.0, approved=₹1350.0."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-CB6DC985BDEC",
+        "decision": "APPROVED",
+        "approved_amount": 1350.0,
+        "claimed_amount": 1500.0,
+        "confidence": 0.95,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "notes": null,
+        "rejection_reasons": null,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Rajesh Kumar (EMP001) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹1500."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹1500 → copay=₹150.0, approved=₹1350.0."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC002",
+      "case_name": "Unreadable Document",
+      "raw_claim": {
+        "member_id": "EMP004",
+        "claim_category": "PHARMACY",
+        "treatment_date": "2024-10-25",
+        "claimed_amount": 800
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "prescription.jpg",
+            "doc_type": "PRESCRIPTION",
+            "fields": {},
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "blurry_bill.jpg",
+            "doc_type": "PHARMACY_BILL",
+            "fields": {},
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "APPROVED",
+        "approved_amount": 800,
+        "claimed_amount": 800,
+        "reason": "Pharmacy claim approved.",
+        "confidence": 0.85,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Sneha Reddy (EMP004) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "PHARMACY sub_limit=₹15000, copay=0%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Pharmacy sub-limit",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Approved ₹800 after sub_limit ₹15000 and copay 0%."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-DAB92301E01A",
+        "decision": "APPROVED",
+        "approved_amount": 800.0,
+        "claimed_amount": 800.0,
+        "confidence": 0.85,
+        "reason": "Pharmacy claim approved.",
+        "notes": null,
+        "rejection_reasons": null,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Sneha Reddy (EMP004) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "PHARMACY sub_limit=₹15000, copay=0%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Pharmacy sub-limit",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Approved ₹800 after sub_limit ₹15000 and copay 0%."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC003",
+      "case_name": "Documents Belong to Different Patients",
+      "raw_claim": {
+        "member_id": "EMP001",
+        "claim_category": "CONSULTATION",
+        "treatment_date": "2024-11-01",
+        "claimed_amount": 1500
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "prescription_rajesh.jpg",
+            "doc_type": "PRESCRIPTION",
+            "fields": {},
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "bill_arjun.jpg",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {},
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "APPROVED",
+        "approved_amount": 1350.0,
+        "claimed_amount": 1500,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Rajesh Kumar (EMP001) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹1500."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹1500 → copay=₹150.0, approved=₹1350.0."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-D657FBC4A406",
+        "decision": "APPROVED",
+        "approved_amount": 1350.0,
+        "claimed_amount": 1500.0,
+        "confidence": 0.95,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "notes": null,
+        "rejection_reasons": null,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Rajesh Kumar (EMP001) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹1500."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹1500 → copay=₹150.0, approved=₹1350.0."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC004",
+      "case_name": "Clean Consultation — Full Approval",
+      "raw_claim": {
+        "member_id": "EMP001",
+        "claim_category": "CONSULTATION",
+        "treatment_date": "2024-11-01",
+        "claimed_amount": 1500
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F007",
+            "doc_type": "PRESCRIPTION",
+            "fields": {
+              "doctor_name": "Dr. Arun Sharma",
+              "doctor_registration": "KA/45678/2015",
+              "patient_name": "Rajesh Kumar",
+              "date": "2024-11-01",
+              "diagnosis": "Viral Fever",
+              "medicines": [
+                "Paracetamol 650mg",
+                "Vitamin C 500mg"
+              ]
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F008",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "hospital_name": "City Clinic, Bengaluru",
+              "patient_name": "Rajesh Kumar",
+              "date": "2024-11-01",
+              "line_items": [
+                {
+                  "description": "Consultation Fee",
+                  "amount": 1000
+                },
+                {
+                  "description": "CBC Test",
+                  "amount": 300
+                },
+                {
+                  "description": "Dengue NS1 Test",
+                  "amount": 200
+                }
+              ],
+              "total": 1500
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "APPROVED",
+        "approved_amount": 1350.0,
+        "claimed_amount": 1500,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Rajesh Kumar (EMP001) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹1500."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹1500 → copay=₹150.0, approved=₹1350.0."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-59A92821324B",
+        "decision": "APPROVED",
+        "approved_amount": 1350.0,
+        "claimed_amount": 1500.0,
+        "confidence": 0.95,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "notes": null,
+        "rejection_reasons": null,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Rajesh Kumar (EMP001) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹1500."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹1500 → copay=₹150.0, approved=₹1350.0."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC005",
+      "case_name": "Waiting Period — Diabetes",
+      "raw_claim": {
+        "member_id": "EMP005",
+        "claim_category": "CONSULTATION",
+        "treatment_date": "2024-10-15",
+        "claimed_amount": 3000
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F009",
+            "doc_type": "PRESCRIPTION",
+            "fields": {
+              "doctor_name": "Dr. Sunil Mehta",
+              "doctor_registration": "GJ/56789/2014",
+              "patient_name": "Vikram Joshi",
+              "diagnosis": "Type 2 Diabetes Mellitus",
+              "medicines": [
+                "Metformin 500mg",
+                "Glimepiride 1mg"
+              ]
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F010",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "patient_name": "Vikram Joshi",
+              "date": "2024-10-15",
+              "total": 3000
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "REJECTED",
+        "approved_amount": 0,
+        "claimed_amount": 3000,
+        "rejection_reasons": [
+          "WAITING_PERIOD"
+        ],
+        "reason": "Waiting period for diabetes is 90 days. Eligible from 2024-11-30. Eligible from: 2024-11-30.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Vikram Joshi (EMP005) found. Join date: 2024-09-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Waiting period for diabetes is 90 days. Eligible from 2024-11-30."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-4D1C341BA697",
+        "decision": "REJECTED",
+        "approved_amount": 0.0,
+        "claimed_amount": 3000.0,
+        "confidence": 0.95,
+        "reason": "Waiting period for diabetes is 90 days. Eligible from 2024-11-30. Eligible from: 2024-11-30.",
+        "notes": null,
+        "rejection_reasons": [
+          "WAITING_PERIOD"
+        ],
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Vikram Joshi (EMP005) found. Join date: 2024-09-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Waiting period for diabetes is 90 days. Eligible from 2024-11-30."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC006",
+      "case_name": "Dental Partial Approval — Cosmetic Exclusion",
+      "raw_claim": {
+        "member_id": "EMP002",
+        "claim_category": "DENTAL",
+        "treatment_date": "2024-10-15",
+        "claimed_amount": 12000
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F011",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "hospital_name": "Smile Dental Clinic",
+              "patient_name": "Priya Singh",
+              "line_items": [
+                {
+                  "description": "Root Canal Treatment",
+                  "amount": 8000
+                },
+                {
+                  "description": "Teeth Whitening",
+                  "amount": 4000
+                }
+              ],
+              "total": 12000
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "REJECTED",
+        "approved_amount": 0,
+        "claimed_amount": 12000,
+        "rejection_reasons": [
+          "EXCLUDED_CONDITION"
+        ],
+        "reason": "Treatment relates to an excluded condition: 'substance abuse treatment'. This is not covered under your policy.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Priya Singh (EMP002) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "DENTAL sub_limit=₹10000, copay=0%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Matched exclusion: 'substance abuse treatment'."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-BE25E0350A2F",
+        "decision": "REJECTED",
+        "approved_amount": 0.0,
+        "claimed_amount": 12000.0,
+        "confidence": 0.95,
+        "reason": "Treatment relates to an excluded condition: 'substance abuse treatment'. This is not covered under your policy.",
+        "notes": null,
+        "rejection_reasons": [
+          "EXCLUDED_CONDITION"
+        ],
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Priya Singh (EMP002) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "DENTAL sub_limit=₹10000, copay=0%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Matched exclusion: 'substance abuse treatment'."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC007",
+      "case_name": "MRI Without Pre-Authorization",
+      "raw_claim": {
+        "member_id": "EMP007",
+        "claim_category": "DIAGNOSTIC",
+        "treatment_date": "2024-11-02",
+        "claimed_amount": 15000
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F012",
+            "doc_type": "PRESCRIPTION",
+            "fields": {
+              "doctor_name": "Dr. Venkat Rao",
+              "doctor_registration": "AP/67890/2017",
+              "diagnosis": "Suspected Lumbar Disc Herniation",
+              "tests_ordered": [
+                "MRI Lumbar Spine"
+              ]
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F013",
+            "doc_type": "LAB_REPORT",
+            "fields": {
+              "test_name": "MRI Lumbar Spine"
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F014",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "line_items": [
+                {
+                  "description": "MRI Lumbar Spine",
+                  "amount": 15000
+                }
+              ],
+              "total": 15000
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "REJECTED",
+        "approved_amount": 0,
+        "claimed_amount": 15000,
+        "rejection_reasons": [
+          "WAITING_PERIOD"
+        ],
+        "reason": "Waiting period for hernia is 365 days. Eligible from 2025-04-01. Eligible from: 2025-04-01.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Suresh Patil (EMP007) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "DIAGNOSTIC sub_limit=₹10000, copay=0%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Waiting period for hernia is 365 days. Eligible from 2025-04-01."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-EC66477C60CE",
+        "decision": "REJECTED",
+        "approved_amount": 0.0,
+        "claimed_amount": 15000.0,
+        "confidence": 0.95,
+        "reason": "Waiting period for hernia is 365 days. Eligible from 2025-04-01. Eligible from: 2025-04-01.",
+        "notes": null,
+        "rejection_reasons": [
+          "WAITING_PERIOD"
+        ],
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Suresh Patil (EMP007) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "DIAGNOSTIC sub_limit=₹10000, copay=0%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Waiting period for hernia is 365 days. Eligible from 2025-04-01."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC008",
+      "case_name": "Per-Claim Limit Exceeded",
+      "raw_claim": {
+        "member_id": "EMP003",
+        "claim_category": "CONSULTATION",
+        "treatment_date": "2024-10-20",
+        "claimed_amount": 7500
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F015",
+            "doc_type": "PRESCRIPTION",
+            "fields": {
+              "doctor_name": "Dr. R. Gupta",
+              "doctor_registration": "DL/34567/2016",
+              "diagnosis": "Gastroenteritis",
+              "medicines": [
+                "Antibiotics",
+                "Probiotics",
+                "ORS"
+              ]
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F016",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "line_items": [
+                {
+                  "description": "Consultation Fee",
+                  "amount": 2000
+                },
+                {
+                  "description": "Medicines",
+                  "amount": 5500
+                }
+              ],
+              "total": 7500
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "REJECTED",
+        "approved_amount": 0,
+        "claimed_amount": 7500,
+        "rejection_reasons": [
+          "PER_CLAIM_EXCEEDED"
+        ],
+        "reason": "Claimed amount ₹7500 exceeds the per-claim limit of ₹5000.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Amit Verma (EMP003) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Per-claim limit",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Claimed ₹7500 exceeds per_claim_limit ₹5000."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-E42DC610C042",
+        "decision": "REJECTED",
+        "approved_amount": 0.0,
+        "claimed_amount": 7500.0,
+        "confidence": 0.95,
+        "reason": "Claimed amount ₹7500 exceeds the per-claim limit of ₹5000.",
+        "notes": null,
+        "rejection_reasons": [
+          "PER_CLAIM_EXCEEDED"
+        ],
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Amit Verma (EMP003) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Per-claim limit",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Claimed ₹7500 exceeds per_claim_limit ₹5000."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC009",
+      "case_name": "Fraud Signal — Multiple Same-Day Claims",
+      "raw_claim": {
+        "member_id": "EMP008",
+        "claim_category": "CONSULTATION",
+        "treatment_date": "2024-10-30",
+        "claimed_amount": 4800
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F017",
+            "doc_type": "PRESCRIPTION",
+            "fields": {
+              "diagnosis": "Migraine",
+              "doctor_name": "Dr. S. Khan"
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F018",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "total": 4800
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "APPROVED",
+        "approved_amount": 1800.0,
+        "claimed_amount": 4800,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Ravi Menon (EMP008) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹2000."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹2000 → copay=₹200.0, approved=₹1800.0."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-F3BD1C2108FC",
+        "decision": "APPROVED",
+        "approved_amount": 1800.0,
+        "claimed_amount": 4800.0,
+        "confidence": 0.95,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "notes": null,
+        "rejection_reasons": null,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Ravi Menon (EMP008) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹2000."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹2000 → copay=₹200.0, approved=₹1800.0."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC010",
+      "case_name": "Network Hospital — Discount Applied",
+      "raw_claim": {
+        "member_id": "EMP010",
+        "claim_category": "CONSULTATION",
+        "treatment_date": "2024-11-03",
+        "claimed_amount": 4500
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F019",
+            "doc_type": "PRESCRIPTION",
+            "fields": {
+              "doctor_name": "Dr. S. Iyer",
+              "doctor_registration": "TN/56789/2013",
+              "patient_name": "Deepak Shah",
+              "diagnosis": "Acute Bronchitis",
+              "medicines": [
+                "Amoxicillin 500mg",
+                "Salbutamol Inhaler"
+              ]
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F020",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "hospital_name": "Apollo Hospitals",
+              "patient_name": "Deepak Shah",
+              "line_items": [
+                {
+                  "description": "Consultation Fee",
+                  "amount": 1500
+                },
+                {
+                  "description": "Medicines",
+                  "amount": 3000
+                }
+              ],
+              "total": 4500
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "APPROVED",
+        "approved_amount": 1800.0,
+        "claimed_amount": 4500,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Deepak Shah (EMP010) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Network discount",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Apollo Hospitals is a network hospital. 20% discount applied: ₹900.0 off → base ₹3600.0."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹2000."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹2000 → copay=₹200.0, approved=₹1800.0."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-0D3AD0310DC8",
+        "decision": "APPROVED",
+        "approved_amount": 1800.0,
+        "claimed_amount": 4500.0,
+        "confidence": 0.95,
+        "reason": "Consultation claim approved within sub-limit after applying copay.",
+        "notes": null,
+        "rejection_reasons": null,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Deepak Shah (EMP010) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Network discount",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Apollo Hospitals is a network hospital. 20% discount applied: ₹900.0 off → base ₹3600.0."
+          },
+          {
+            "step": "Sub-limit check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Eligible after sub_limit=₹2000: ₹2000."
+          },
+          {
+            "step": "Copay application",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Copay 10% on ₹2000 → copay=₹200.0, approved=₹1800.0."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC011",
+      "case_name": "Component Failure — Graceful Degradation",
+      "raw_claim": {
+        "member_id": "EMP006",
+        "claim_category": "ALTERNATIVE_MEDICINE",
+        "treatment_date": "2024-10-28",
+        "claimed_amount": 4000
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F021",
+            "doc_type": "PRESCRIPTION",
+            "fields": {
+              "doctor_name": "Vaidya T. Krishnan",
+              "doctor_registration": "AYUR/KL/2345/2019",
+              "diagnosis": "Chronic Joint Pain",
+              "treatment": "Panchakarma Therapy"
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F022",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "hospital_name": "Ayur Wellness Centre",
+              "total": 4000,
+              "line_items": [
+                {
+                  "description": "Panchakarma Therapy (5 sessions)",
+                  "amount": 3000
+                },
+                {
+                  "description": "Consultation",
+                  "amount": 1000
+                }
+              ]
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "APPROVED",
+        "approved_amount": 4000,
+        "claimed_amount": 4000,
+        "reason": "Alternative medicine claim approved within sub-limit.",
+        "confidence": 0.85,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Kavita Nair (EMP006) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "ALTERNATIVE_MEDICINE sub_limit=₹8000, copay=0%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Alternative medicine sub-limit",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Approved ₹4000 (sub_limit=₹8000)."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-ABB9DC0CEA3C",
+        "decision": "APPROVED",
+        "approved_amount": 4000.0,
+        "claimed_amount": 4000.0,
+        "confidence": 0.85,
+        "reason": "Alternative medicine claim approved within sub-limit.",
+        "notes": null,
+        "rejection_reasons": null,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Kavita Nair (EMP006) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "ALTERNATIVE_MEDICINE sub_limit=₹8000, copay=0%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No exclusions matched."
+          },
+          {
+            "step": "Waiting period check",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "No waiting period restrictions apply."
+          },
+          {
+            "step": "Alternative medicine sub-limit",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Approved ₹4000 (sub_limit=₹8000)."
+          }
+        ],
+        "document_errors": []
+      }
+    },
+    {
+      "case_id": "TC012",
+      "case_name": "Excluded Treatment",
+      "raw_claim": {
+        "member_id": "EMP009",
+        "claim_category": "CONSULTATION",
+        "treatment_date": "2024-10-18",
+        "claimed_amount": 8000
+      },
+      "extracted_json": {
+        "extracted_documents": [
+          {
+            "filename": "F023",
+            "doc_type": "PRESCRIPTION",
+            "fields": {
+              "doctor_name": "Dr. P. Banerjee",
+              "doctor_registration": "WB/34567/2015",
+              "diagnosis": "Morbid Obesity — BMI 37",
+              "treatment": "Bariatric Consultation and Customised Diet Plan"
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          },
+          {
+            "filename": "F024",
+            "doc_type": "HOSPITAL_BILL",
+            "fields": {
+              "line_items": [
+                {
+                  "description": "Bariatric Consultation",
+                  "amount": 3000
+                },
+                {
+                  "description": "Personalised Diet and Nutrition Program",
+                  "amount": 5000
+                }
+              ],
+              "total": 8000
+            },
+            "confidence": 1.0,
+            "low_confidence_fields": [],
+            "validation_issues": []
+          }
+        ],
+        "extraction_errors": [],
+        "low_confidence": false
+      },
+      "policy_json": {
+        "decision": "REJECTED",
+        "approved_amount": 0,
+        "claimed_amount": 8000,
+        "rejection_reasons": [
+          "EXCLUDED_CONDITION"
+        ],
+        "reason": "Treatment relates to an excluded condition: 'war or nuclear hazard'. This is not covered under your policy.",
+        "confidence": 0.95,
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Anita Desai (EMP009) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Matched exclusion: 'war or nuclear hazard'."
+          }
+        ],
+        "document_errors": []
+      },
+      "decision_json": {
+        "claim_id": "CLAIM-361804B52622",
+        "decision": "REJECTED",
+        "approved_amount": 0.0,
+        "claimed_amount": 8000.0,
+        "confidence": 0.95,
+        "reason": "Treatment relates to an excluded condition: 'war or nuclear hazard'. This is not covered under your policy.",
+        "notes": null,
+        "rejection_reasons": [
+          "EXCLUDED_CONDITION"
+        ],
+        "trace": [
+          {
+            "step": "Member lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "Member Anita Desai (EMP009) found. Join date: 2024-04-01."
+          },
+          {
+            "step": "Policy lookup",
+            "agent": "PolicyAgent",
+            "status": "PASSED",
+            "detail": "CONSULTATION sub_limit=₹2000, copay=10%."
+          },
+          {
+            "step": "Exclusions check",
+            "agent": "PolicyAgent",
+            "status": "FAILED",
+            "detail": "Matched exclusion: 'war or nuclear hazard'."
+          }
+        ],
+        "document_errors": []
+      }
+    }
+  ]
+}

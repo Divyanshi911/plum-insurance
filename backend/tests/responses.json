@@ -1,0 +1,659 @@
+{
+  "claim_id": "CLAIM-547A27222DAB",
+  "decision": "APPROVED",
+  "approved_amount": 1350.0,
+  "claimed_amount": 1500.0,
+  "confidence": 0.6000000000000001,
+  "reason": "Consultation claim approved within sub-limit after applying copay.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy lookup",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Consultation sub_limit=2000.0, copay_percent=10.0."
+    },
+    {
+      "step": "Sub-limit check",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Claimed_amount=1500.0. Eligible after sub_limit=1500.0."
+    },
+    {
+      "step": "Copay application",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Copay 10.0% on 1500.0 -> copay=150.0, approved=1350.0."
+    },
+    {
+      "step": "Document issues",
+      "agent": "PolicyAgent",
+      "status": "FAILED",
+      "detail": "Document_errors present: 1."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['PRESCRIPTION']. For CONSULTATION claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL'].",
+      "document_types_seen": [
+        "PRESCRIPTION"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC002: Unreadable Document ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-594AB68F1944",
+  "decision": "MANUAL_REVIEW",
+  "approved_amount": 0.0,
+  "claimed_amount": 800.0,
+  "confidence": 0.4,
+  "reason": "Policy rules for category PHARMACY not implemented yet.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy fallback",
+      "agent": "PolicyAgent",
+      "status": "SKIPPED",
+      "detail": "No policy logic implemented for PHARMACY."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['PRESCRIPTION']. For PHARMACY claims, you must upload ['PHARMACY_BILL', 'PRESCRIPTION']. Missing: ['PHARMACY_BILL'].",
+      "document_types_seen": [
+        "PRESCRIPTION"
+      ],
+      "document_types_required": [
+        "PHARMACY_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC003: Documents Belong to Different Patients ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-2D1450526A41",
+  "decision": "APPROVED",
+  "approved_amount": 1350.0,
+  "claimed_amount": 1500.0,
+  "confidence": 0.6000000000000001,
+  "reason": "Consultation claim approved within sub-limit after applying copay.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy lookup",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Consultation sub_limit=2000.0, copay_percent=10.0."
+    },
+    {
+      "step": "Sub-limit check",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Claimed_amount=1500.0. Eligible after sub_limit=1500.0."
+    },
+    {
+      "step": "Copay application",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Copay 10.0% on 1500.0 -> copay=150.0, approved=1350.0."
+    },
+    {
+      "step": "Document issues",
+      "agent": "PolicyAgent",
+      "status": "FAILED",
+      "detail": "Document_errors present: 1."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['PRESCRIPTION']. For CONSULTATION claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL'].",
+      "document_types_seen": [
+        "PRESCRIPTION"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC004: Clean Consultation — Full Approval ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-E94A9563D247",
+  "decision": "APPROVED",
+  "approved_amount": 1350.0,
+  "claimed_amount": 1500.0,
+  "confidence": 0.6000000000000001,
+  "reason": "Consultation claim approved within sub-limit after applying copay.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy lookup",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Consultation sub_limit=2000.0, copay_percent=10.0."
+    },
+    {
+      "step": "Sub-limit check",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Claimed_amount=1500.0. Eligible after sub_limit=1500.0."
+    },
+    {
+      "step": "Copay application",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Copay 10.0% on 1500.0 -> copay=150.0, approved=1350.0."
+    },
+    {
+      "step": "Document issues",
+      "agent": "PolicyAgent",
+      "status": "FAILED",
+      "detail": "Document_errors present: 2."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For CONSULTATION claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL', 'PRESCRIPTION'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC005: Waiting Period — Diabetes ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-FA71E97324C3",
+  "decision": "APPROVED",
+  "approved_amount": 1800.0,
+  "claimed_amount": 3000.0,
+  "confidence": 0.6000000000000001,
+  "reason": "Consultation claim approved within sub-limit after applying copay.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy lookup",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Consultation sub_limit=2000.0, copay_percent=10.0."
+    },
+    {
+      "step": "Sub-limit check",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Claimed_amount=3000.0. Eligible after sub_limit=2000.0."
+    },
+    {
+      "step": "Copay application",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Copay 10.0% on 2000.0 -> copay=200.0, approved=1800.0."
+    },
+    {
+      "step": "Document issues",
+      "agent": "PolicyAgent",
+      "status": "FAILED",
+      "detail": "Document_errors present: 2."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For CONSULTATION claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL', 'PRESCRIPTION'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC006: Dental Partial Approval — Cosmetic Exclusion ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-7DE8C11E6311",
+  "decision": "MANUAL_REVIEW",
+  "approved_amount": 0.0,
+  "claimed_amount": 12000.0,
+  "confidence": 0.4,
+  "reason": "Policy rules for category DENTAL not implemented yet.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy fallback",
+      "agent": "PolicyAgent",
+      "status": "SKIPPED",
+      "detail": "No policy logic implemented for DENTAL."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For DENTAL claims, you must upload ['HOSPITAL_BILL']. Missing: ['HOSPITAL_BILL'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL"
+      ]
+    }
+  ]
+}
+
+=== TC007: MRI Without Pre-Authorization ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-C7E3D73C4B6A",
+  "decision": "MANUAL_REVIEW",
+  "approved_amount": 0.0,
+  "claimed_amount": 15000.0,
+  "confidence": 0.4,
+  "reason": "Policy rules for category DIAGNOSTIC not implemented yet.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy fallback",
+      "agent": "PolicyAgent",
+      "status": "SKIPPED",
+      "detail": "No policy logic implemented for DIAGNOSTIC."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For DIAGNOSTIC claims, you must upload ['HOSPITAL_BILL', 'LAB_REPORT', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL', 'LAB_REPORT', 'PRESCRIPTION'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "LAB_REPORT",
+        "PRESCRIPTION"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "LAB_REPORT",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC008: Per-Claim Limit Exceeded ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-271C0714BD3F",
+  "decision": "APPROVED",
+  "approved_amount": 1800.0,
+  "claimed_amount": 7500.0,
+  "confidence": 0.6000000000000001,
+  "reason": "Consultation claim approved within sub-limit after applying copay.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy lookup",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Consultation sub_limit=2000.0, copay_percent=10.0."
+    },
+    {
+      "step": "Sub-limit check",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Claimed_amount=7500.0. Eligible after sub_limit=2000.0."
+    },
+    {
+      "step": "Copay application",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Copay 10.0% on 2000.0 -> copay=200.0, approved=1800.0."
+    },
+    {
+      "step": "Document issues",
+      "agent": "PolicyAgent",
+      "status": "FAILED",
+      "detail": "Document_errors present: 2."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For CONSULTATION claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL', 'PRESCRIPTION'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC009: Fraud Signal — Multiple Same-Day Claims ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-EB3760080C7F",
+  "decision": "APPROVED",
+  "approved_amount": 1800.0,
+  "claimed_amount": 4800.0,
+  "confidence": 0.6000000000000001,
+  "reason": "Consultation claim approved within sub-limit after applying copay.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy lookup",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Consultation sub_limit=2000.0, copay_percent=10.0."
+    },
+    {
+      "step": "Sub-limit check",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Claimed_amount=4800.0. Eligible after sub_limit=2000.0."
+    },
+    {
+      "step": "Copay application",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Copay 10.0% on 2000.0 -> copay=200.0, approved=1800.0."
+    },
+    {
+      "step": "Document issues",
+      "agent": "PolicyAgent",
+      "status": "FAILED",
+      "detail": "Document_errors present: 2."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For CONSULTATION claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL', 'PRESCRIPTION'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC010: Network Hospital — Discount Applied ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-00435DE9BADE",
+  "decision": "APPROVED",
+  "approved_amount": 1800.0,
+  "claimed_amount": 4500.0,
+  "confidence": 0.6000000000000001,
+  "reason": "Consultation claim approved within sub-limit after applying copay.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy lookup",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Consultation sub_limit=2000.0, copay_percent=10.0."
+    },
+    {
+      "step": "Sub-limit check",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Claimed_amount=4500.0. Eligible after sub_limit=2000.0."
+    },
+    {
+      "step": "Copay application",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Copay 10.0% on 2000.0 -> copay=200.0, approved=1800.0."
+    },
+    {
+      "step": "Document issues",
+      "agent": "PolicyAgent",
+      "status": "FAILED",
+      "detail": "Document_errors present: 2."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For CONSULTATION claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL', 'PRESCRIPTION'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC011: Component Failure — Graceful Degradation ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-A6C4B261D67A",
+  "decision": "MANUAL_REVIEW",
+  "approved_amount": 0.0,
+  "claimed_amount": 4000.0,
+  "confidence": 0.4,
+  "reason": "Policy rules for category ALTERNATIVE_MEDICINE not implemented yet.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy fallback",
+      "agent": "PolicyAgent",
+      "status": "SKIPPED",
+      "detail": "No policy logic implemented for ALTERNATIVE_MEDICINE."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For ALTERNATIVE_MEDICINE claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL', 'PRESCRIPTION'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}
+
+=== TC012: Excluded Treatment ===
+HTTP status: 200
+Response JSON:
+{
+  "claim_id": "CLAIM-9837D48BF770",
+  "decision": "APPROVED",
+  "approved_amount": 1800.0,
+  "claimed_amount": 8000.0,
+  "confidence": 0.6000000000000001,
+  "reason": "Consultation claim approved within sub-limit after applying copay.",
+  "notes": null,
+  "rejection_reasons": null,
+  "trace": [
+    {
+      "step": "Policy lookup",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Consultation sub_limit=2000.0, copay_percent=10.0."
+    },
+    {
+      "step": "Sub-limit check",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Claimed_amount=8000.0. Eligible after sub_limit=2000.0."
+    },
+    {
+      "step": "Copay application",
+      "agent": "PolicyAgent",
+      "status": "PASSED",
+      "detail": "Copay 10.0% on 2000.0 -> copay=200.0, approved=1800.0."
+    },
+    {
+      "step": "Document issues",
+      "agent": "PolicyAgent",
+      "status": "FAILED",
+      "detail": "Document_errors present: 2."
+    }
+  ],
+  "document_errors": [
+    {
+      "type": "MISSING_REQUIRED",
+      "message": "You uploaded ['UNKNOWN']. For CONSULTATION claims, you must upload ['HOSPITAL_BILL', 'PRESCRIPTION']. Missing: ['HOSPITAL_BILL', 'PRESCRIPTION'].",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    },
+    {
+      "type": "WRONG_TYPE",
+      "message": "The system could not recognize the document types from filenames. Please upload clear PRESCRIPTION / BILL / LAB REPORT docs.",
+      "document_types_seen": [
+        "UNKNOWN"
+      ],
+      "document_types_required": [
+        "HOSPITAL_BILL",
+        "PRESCRIPTION"
+      ]
+    }
+  ]
+}

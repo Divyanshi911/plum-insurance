@@ -1,0 +1,31 @@
+# Global
+.DS_Store
+Thumbs.db
+*.log
+
+# Python / FastAPI backend
+backend/__pycache__/
+backend/**/*.py[cod]
+backend/.venv/
+backend/venv/
+backend/.mypy_cache/
+backend/.pytest_cache/
+backend/.ruff_cache/
+backend/.env
+backend/.env.local
+backend/.coverage
+backend/htmlcov/
+
+# Node / Vite frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# IDE / editor
+.vscode/
+.idea/
+*.iml
