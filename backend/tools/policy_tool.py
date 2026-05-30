@@ -6,9 +6,12 @@ from typing import Any, Dict, List, Optional
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
-def _get_member(policy_terms: Dict, member_id: str) -> Optional[Dict]:
-    for m in policy_terms.get("members", []):
-        if m["member_id"] == member_id:
+def _get_member(policy_terms, member_id: str):
+    for m in policy_terms["members"]:
+        # Skip non-dict entries defensively
+        if not isinstance(m, dict):
+            continue
+        if m.get("member_id") == member_id:
             return m
     return None
 
