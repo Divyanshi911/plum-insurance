@@ -173,7 +173,6 @@ For full schema details, see `COMPONENTS.md` and `backend/schemas/claim.py`.
   - Each tool and agent
   - ClaimResponse and TraceStep models
 
-These documents are intended to be sufficient for another engineer to reimplement any component without reading its code.
 
 ---
 
@@ -214,7 +213,6 @@ Example frontend environment variable (Vercel):
 VITE_API_BASE_URL=https://plum-insurance-production.up.railway.app
 ```
 
-For the assignment, either a deployed URL **or** the local instructions above are sufficient.
 
 ---
 
