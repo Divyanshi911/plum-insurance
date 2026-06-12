@@ -23,4 +23,6 @@ easyocr
 
 pytest
 pytest-asyncio
-httpx                 
+httpx   
+pytesseract
+              
