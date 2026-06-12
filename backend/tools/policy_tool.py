@@ -1,5 +1,3 @@
-# backend/tools/policy_tool.py
-
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional
 
@@ -71,23 +69,21 @@ def _is_network_hospital(policy_terms: Dict, hospital_name: str) -> bool:
     return False
 
 
-def _check_exclusions(policy_terms: Dict, diagnosis: str, line_items: List[Dict]) -> Optional[str]:
-    """Return the matched exclusion string, or None if clean."""
-    exclusions = [e.lower() for e in policy_terms.get("exclusions", {}).get("conditions", [])]
+def _check_exclusions(policy_terms, diagnosis, line_items):
+    exclusions = policy_terms.get("exclusions", {}).get("conditions", [])
 
-    # check diagnosis
-    for exc in exclusions:
-        if not exc:
-            continue
-        if exc in diagnosis:
-            return exc
+    for excl in exclusions:
+        # Extract meaningful words (skip short words like "or", "and")
+        keywords = [w.lower() for w in excl.split() if len(w) > 3]
+        if any(kw in diagnosis for kw in keywords):
+            return excl                                  # return the full exclusion name
 
-    # check line item descriptions
     for item in line_items:
         desc = item.get("description", "").lower()
-        for exc in exclusions:
-            if exc and exc in desc:
-                return exc
+        for excl in exclusions:
+            keywords = [w.lower() for w in excl.split() if len(w) > 3]
+            if any(kw in desc for kw in keywords):
+                return excl
 
     return None
 

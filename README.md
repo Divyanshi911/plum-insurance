@@ -238,3 +238,27 @@ If you’re reviewing this project:
 - Run the backend and frontend locally using the steps in this README.
 - Use `backend/data/test_cases.json` to exercise the policy engine.
 - Check the FastAPI docs at `http://localhost:8000/docs` for API exploration.
+
+
+without LLMs
+Fallback method
+Uploaded file
+     │
+     ▼
+EasyOCR (free, runs locally, GPU optional)
+     │  raw text + per-word confidence
+     ▼
+_classify_from_text()     ← filename + keyword signals → doc type
+     │
+     ▼
+_parse_prescription()     ← regex: Dr. name, Reg No, Dx, medicines
+_parse_hospital_bill()    ← regex: total, line items, bill number
+_parse_lab_report()       ← regex: test name / result / range rows
+_parse_pharmacy_bill()    ← regex: medicine rows, batch, expiry, MRP
+_parse_discharge_summary()← regex: admission/discharge dates, diagnosis
+     │
+     ▼
+_score()                  ← deduct confidence for missing critical fields
+     │
+     ▼
+extracted_json            ← same schema your policy_tool already reads

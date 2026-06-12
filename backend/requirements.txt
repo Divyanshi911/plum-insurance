@@ -17,7 +17,8 @@ python-dotenv
 PyMuPDF                   
 opencv-python-headless   
 Pillow                    
-numpy                     
+numpy 
+easyocr             
 
 
 pytest

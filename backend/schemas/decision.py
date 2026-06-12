@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Any
 from pydantic import BaseModel
 
 class TraceStep(BaseModel):
@@ -44,6 +44,6 @@ class Decision(BaseModel):
     confidence: float
     reason: str
     rejection_reasons: Optional[List[str]] = None
-    notes: Optional[str] = None
+    notes: Optional[Any] = None
     trace: List[TraceStep]
     document_errors: List[DocumentError] = []

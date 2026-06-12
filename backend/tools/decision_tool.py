@@ -26,7 +26,7 @@ def _decision_to_claim_response(decision_data: Dict[str, Any]) -> Dict[str, Any]
         claimed_amount=decision.claimed_amount,
         confidence=decision.confidence,
         reason=decision.reason,
-        notes=decision.notes,
+        notes=getattr(decision, "notes", None),
         rejection_reasons=decision.rejection_reasons,
         trace=decision.trace,
         document_errors=decision.document_errors,

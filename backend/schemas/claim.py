@@ -1,5 +1,5 @@
 # backend/schemas/claim.py
-from typing import List, Optional
+from typing import List, Optional, Any
 from pydantic import BaseModel
 from backend.schemas.decision import TraceStep, DocumentError
 
@@ -21,7 +21,7 @@ class ClaimResponse(BaseModel):
     claimed_amount: float
     confidence: float
     reason: str
-    notes: Optional[str] = None
+    notes: Optional[Any] = None
     rejection_reasons: Optional[List[str]] = None
     trace: List[TraceStep]
     document_errors: List[DocumentError] = []
